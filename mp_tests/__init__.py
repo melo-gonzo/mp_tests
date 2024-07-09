@@ -1,3 +1,1 @@
 from mp_tests.elasticity import Elasticity
-from mp_tests.equilibrium import EquilibriumCrystalStructure
-from mp_tests.mp_test_driver import MPTestDriver
