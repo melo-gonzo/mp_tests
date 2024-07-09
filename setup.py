@@ -12,9 +12,6 @@ setup(
     install_requires = [
         'tqdm',
         'tinydb',
-        'numdifftools',
-        'pymatgen',
-        'kim_property',
-        'kim-test-utils @  git+https://github.com/EFuem/kim-test-utils.git'
+        'kim-tools @  git+https://github.com/openkim/kim-tools.git'
     ],
 )
