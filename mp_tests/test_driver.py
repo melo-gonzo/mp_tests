@@ -1,13 +1,13 @@
 #!/usr/bin/python
 
-from kim_test_utils.test_driver import CrystalGenomeTestDriver, query_crystal_genome_structures
+from kim_tools.test_driver import CrystalGenomeTestDriver, query_crystal_genome_structures
 from typing import Optional, Union, List
 from numdifftools import MaxStepGenerator
 from ase.build import bulk
 from ase.units import GPa
 from ase.atoms import Atoms
 from ase.cell import Cell
-from elastic import ElasticConstants, calc_bulk, find_nearest_isotropy, get_unique_components_and_reconstruct_matrix
+from mp_tests.elastic import ElasticConstants, calc_bulk, find_nearest_isotropy, get_unique_components_and_reconstruct_matrix
 import numpy as np
 
 class TestDriver(CrystalGenomeTestDriver):

@@ -1,5 +1,5 @@
-from test_driver import TestDriver
-from mp_mixin import MPMixin
+from mp_tests.test_driver import TestDriver
+from mp_tests.mp_mixin import MPMixin
 
 class Elasticity(TestDriver,MPMixin):
 

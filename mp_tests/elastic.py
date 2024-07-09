@@ -149,7 +149,7 @@ from numdifftools.step_generators import MaxStepGenerator
 import math
 from typing import Optional, Union, IO, Tuple, List, Dict
 from sys import float_info
-from kim_test_utils.test_driver import minimize_wrapper
+from kim_tools.test_driver import minimize_wrapper
 
 
 FMAX_STRAIN = 1e-5 # Force tolerance for the relaxation of internal coordinates during strain steps (in all methods except energy-full)
