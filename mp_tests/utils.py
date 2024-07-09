@@ -14,25 +14,6 @@ def load_atoms(k, v):
     a.info["bulk-modulus-reuss"] = v["bulk_modulus"]["reuss"]
     return a
 
-
-def get_isolated_energy_per_atom(calc, symbol):
-    """
-    Construct a non-periodic cell containing a single atom and compute its energy.
-    """
-    single_atom = Atoms(
-        symbol,
-        positions=[(0.1, 0.1, 0.1)],
-        cell=(20, 20, 20),
-        pbc=(False, False, False),
-    )
-    single_atom.calc = calc
-    energy_per_atom = single_atom.get_potential_energy()
-    if hasattr(calc, "__del__"):
-        calc.__del__()
-    del single_atom
-    return energy_per_atom
-
-
 mp_species = [
     "H",
     "He",
