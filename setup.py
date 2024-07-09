@@ -12,6 +12,7 @@ setup(
     install_requires = [
         'tqdm',
         'tinydb',
-        'kim-tools @  git+https://github.com/openkim/kim-tools.git'
+        'kim-tools @  git+https://github.com/openkim/kim-tools.git',
+        'pymatgen'
     ],
 )
