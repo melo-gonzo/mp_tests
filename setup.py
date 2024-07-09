@@ -13,6 +13,7 @@ setup(
         'tqdm',
         'tinydb',
         'kim-tools @  git+https://github.com/openkim/kim-tools.git',
-        'pymatgen'
+        'pymatgen',
+        'numdifftools'
     ],
 )
