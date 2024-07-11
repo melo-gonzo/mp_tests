@@ -13,6 +13,23 @@ class Elasticity(TestDriver,MPMixin):
         
     def post_process(self):
         results = self.property_instances
+        
+        # Lattice constants
+        print (results)
+
+        self.insert_mp_outputs(
+            self.atoms.info["mp-id"],
+            "elastic-constants-ieee",
+            self.atoms.info["elastic-constants-ieee"],
+            elastic_constants.tolist(),
+            )
+
+        self.insert_mp_outputs(
+            self.atoms.info["mp-id"],
+            "bulk-modulus-reuss",
+            self.atoms.info["bulk-modulus-reuss"],
+             bulk,
+            )
 
 if __name__ == "__main__":
     from mace.calculators import mace_mp
