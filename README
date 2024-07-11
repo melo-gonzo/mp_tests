@@ -2,7 +2,7 @@ Package to compute property tests over data present on Materials Project.
 
 KIM models and arbitrarty ASE Calculators are supported.
 
-Currently, only tests to compute equilibrium crystal structure and elastic constants are implemented.
+Currently, only tests to compute  elastic constants/bulk modulus (with equilibrium crystal structure) are implemented.
 
 Functionality exists to compute elastic constants (and equilibrium crystal structures) for all structures on MP with reference elastic properties. 
 
@@ -22,6 +22,8 @@ Example Usage:
 
 
     test.mp_tests()
+
+If one want to install a version mirroring how these tests are performed within OpenKIM, use the new_driver branch. In this case [AFLOW](https://www.aflowlib.org/install-aflow/) must also be installed.
 
 
 Note: It's often the case for MLIPs that convergence criteria and optimization strategies adopted from the original KIM tests may be too tight/inappropriate. Work is still needed here.
