@@ -7,7 +7,7 @@ setup(
     description = ("A suite of property tests for Materials Project data using KIM models or arbitrary ASE Calculators"),
     license = "BSD",
     packages=find_packages(),
-    package_data={"": ['*.pkl']},
+    package_data={"": ['*.pkl', '*.edn']},
     include_package_data=True,
     install_requires = [
         'tqdm',
