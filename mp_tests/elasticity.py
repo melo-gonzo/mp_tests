@@ -16,7 +16,17 @@ class Elasticity(TestDriver,MPMixin):
     def post_process(self, orig_atoms):
         results = kim_edn.loads(self._property_instances)
         
-        # Lattice constants
+        lengths = self.atoms.cell.lengths().tolist()
+        angles = self.atoms.cell.angles().tolist()
+        gt_lengths = orig_atoms.cell.lengths().tolist()
+        gt_angles = orig_atoms.cell.angles().tolist()
+
+        self.insert_mp_outputs(
+            orig_atoms.info["mp-id"], "cell-lengths", gt_lengths, lengths
+        )
+        self.insert_mp_outputs(
+            orig_atoms.info["mp-id"], "cell-angles", gt_angles, angles
+        )
 
         t = Tensor.from_voigt(results[0]['elasticity-matrix-raw']['source-value'])
         elastic_constants = t.convert_to_ieee(
