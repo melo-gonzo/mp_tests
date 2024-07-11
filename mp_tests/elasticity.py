@@ -1,7 +1,7 @@
 from mp_tests.test_driver import TestDriver
 from mp_tests.mp_mixin import MPMixin
 from kim_tools.test_driver.core import add_or_update_property
-
+import os
 
 class Elasticity(TestDriver,MPMixin):
 
