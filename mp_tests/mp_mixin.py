@@ -51,7 +51,7 @@ class MPMixin():
             check = self.check_supported_species(atoms)
             if check:
                 self(atoms, **kwargs)
-                self.post_process()
+                self.post_process(orig_atoms = atoms)
 
     def insert_mp_outputs(self, mp_id, property_name, gt, comp):
         db = TinyDB(self.db_name)
