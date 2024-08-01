@@ -15,5 +15,6 @@ setup(
         'kim-tools @  git+https://github.com/openkim/kim-tools.git',
         'pymatgen',
         'numdifftools'
+        'kimvv @ https://github.com/openkim/kimvv.git',
     ],
 )
