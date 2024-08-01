@@ -14,7 +14,7 @@ setup(
         'tinydb',
         'kim-tools @  git+https://github.com/openkim/kim-tools.git',
         'pymatgen',
-        'numdifftools'
+        'numdifftools',
         'kimvv @ git+https://github.com/openkim/kimvv.git',
     ],
 )
