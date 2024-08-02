@@ -10,6 +10,7 @@ setup(
     package_data={"": ['*.pkl', '*.edn']},
     include_package_data=True,
     install_requires = [
+        'numpy=1.26.4',
         'tqdm',
         'tinydb',
         'kim-tools @  git+https://github.com/openkim/kim-tools.git',
