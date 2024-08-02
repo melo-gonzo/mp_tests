@@ -22,7 +22,14 @@ test = Elasticity(
     "SW_StillingerWeber_1985_Si__MO_405512056662_006",
     )
 
+# computes elastic constants for first MP structure without relaxation (not recommended)
 test.mp_tests()
+
+# computes elastic constanst for first 10 MP structures with relaxtion prior
+test.mp_tests(job_n=0, n_calcs=10, optimize=True)
+
+# performs relaxation only for second batch of 100 MP structures (100-199)
+test.mp_tests(job_n=1, n_calcs=100, optimize=True, only_optimize=True)
 ```
 
 
