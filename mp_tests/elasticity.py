@@ -56,7 +56,6 @@ class Elasticity(ElasticConstantsCrystal,MPMixin):
         runs test
         """
         super()._setup(atoms, optimize, **kwargs)
-        print ('OO',only_optimize)
         if only_optimize:
             return
         if self.atoms is not None:
