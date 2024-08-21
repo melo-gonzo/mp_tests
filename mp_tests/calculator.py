@@ -1,3 +1,4 @@
+import torch
 from matsciml.preprocessing.atoms_to_graphs import AtomsToGraphs
 import numpy as np
 from matsciml.models.base import ForceRegressionTask
@@ -40,7 +41,7 @@ class MatSciMLCalculator(Calculator):
         system_size = len(coords)
         return_dict["pos"] = coords
         chosen_nodes = PointCloudDataset.choose_dst_nodes(system_size, True)
-        src_nodes, dst_nodes = chosen_nodes["src_nodes"], chosen_nodes["dst_nodes"]
+        src_nodes, dst_nodes = chosen_nodes["pc_src_nodes"], chosen_nodes["pc_dst_nodes"]
         atom_numbers = torch.LongTensor(structure.atomic_numbers)
         # uses one-hot encoding featurization
         pc_features = point_cloud_featurization(

@@ -5,7 +5,8 @@ import os
 from tqdm import tqdm
 from ase import Atoms
 from ase.constraints import UnitCellFilter, FixSymmetry
-from ase.optimize import BFGS, FIRE, BFGSLineSearch,FIRE2
+from ase.optimize import BFGS, FIRE, BFGSLineSearch, FIRE2
+import time
 
 from mp_tests.mp_test_driver import MPTestDriver
 from mp_tests.utils import get_isolated_energy_per_atom
@@ -39,12 +40,14 @@ class EquilibriumCrystalStructure(MPTestDriver):
         """
         gt_lengths = self.atoms.cell.lengths().tolist()
         gt_angles = self.atoms.cell.angles().tolist()
-        
+
         symmetry = FixSymmetry(self.atoms)
         self.atoms.set_constraint(symmetry)
         atoms_wrapped = UnitCellFilter(self.atoms)
         # Optimize
+        start_time = time.time()
         opt = FIRE2(atoms_wrapped, maxstep=maxstep)  # logfile=None)
+        total_time = time.time() - start_time()
         try:
             converged = opt.run(fmax=ftol, steps=it)
             iteration_limits_reached = not converged
@@ -90,21 +93,39 @@ class EquilibriumCrystalStructure(MPTestDriver):
         lengths = self.atoms.cell.lengths().tolist()
         angles = self.atoms.cell.angles().tolist()
 
+        self.insert_mp_outputs(self.atoms.info["mp-id"], "steps", None, str(opt.nsteps))
+        self.insert_mp_outputs(
+            self.atoms.info["mp-id"], "optimization_time", None, str(total_time)
+        )
+        self.insert_mp_outputs(
+            self.atoms.info["mp-id"], "stalled", None, str(not minimization_stalled)
+        )
+        self.insert_mp_outputs(
+            self.atoms.info["mp-id"], "success", None, str(self.success)
+        )
         self.insert_mp_outputs(
             self.atoms.info["mp-id"], "cell-lengths", gt_lengths, lengths
         )
         self.insert_mp_outputs(
             self.atoms.info["mp-id"], "cell-angles", gt_angles, angles
         )
-        print (energy_per_atom)
         self.insert_mp_outputs(
-            self.atoms.info["mp-id"], "energy-per-atom", None, str(float(energy_per_atom))
+            self.atoms.info["mp-id"],
+            "energy-per-atom",
+            None,
+            str(float(energy_per_atom)),
         )
         self.insert_mp_outputs(
-            self.atoms.info["mp-id"], "max-residual-force", None, str(np.max(np.abs(forces)))
+            self.atoms.info["mp-id"],
+            "max-residual-force",
+            None,
+            str(np.max(np.abs(forces))),
         )
         self.insert_mp_outputs(
-            self.atoms.info["mp-id"], "max-residual-stress", None, str(np.max(np.abs(stress)))
+            self.atoms.info["mp-id"],
+            "max-residual-stress",
+            None,
+            str(np.max(np.abs(stress))),
         )
 
     def __name__(self):
