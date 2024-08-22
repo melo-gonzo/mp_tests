@@ -124,3 +124,33 @@ mp_species = [
     "Np",
     "Pu",
 ]
+
+
+
+def save_smaller_pickles(mp_dict):
+    import pickle
+    import random
+    from math import ceil
+    import os
+
+    M = 10
+    items = list(mp_dict.items())
+    random.shuffle(items)
+
+    last_items = items[10_000:]
+    items = items[:10_000]
+
+    N = len(items)
+    samples_per_file = ceil(N / M)
+
+    # Split the items into M chunks and save each chunk to a separate pickle file
+    for i in range(M):
+        chunk = dict(items[i * samples_per_file:(i + 1) * samples_per_file])
+        with open(f'{os.path.dirname(__file__)}/data/output_chunk_{i+1}.pkl', 'wb') as file:
+            pickle.dump(chunk, file)
+
+    i += 1
+    last_chunk = dict(last_items)
+    with open(f'{os.path.dirname(__file__)}/data/output_chunk_{i+1}.pkl', 'wb') as file:
+        pickle.dump(last_chunk, file)
+

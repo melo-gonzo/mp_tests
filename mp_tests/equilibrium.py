@@ -47,7 +47,6 @@ class EquilibriumCrystalStructure(MPTestDriver):
         # Optimize
         start_time = time.time()
         opt = FIRE2(atoms_wrapped, maxstep=maxstep)  # logfile=None)
-        total_time = time.time() - start_time()
         try:
             converged = opt.run(fmax=ftol, steps=it)
             iteration_limits_reached = not converged
@@ -59,6 +58,7 @@ class EquilibriumCrystalStructure(MPTestDriver):
             self.success = False
         else:
             self.success = True
+        total_time = time.time() - start_time
         forces = self.atoms.get_forces()
         stress = self.atoms.get_stress()
         # Compute the average energy per atom after subtracting out the energies of the
@@ -98,7 +98,7 @@ class EquilibriumCrystalStructure(MPTestDriver):
             self.atoms.info["mp-id"], "optimization_time", None, str(total_time)
         )
         self.insert_mp_outputs(
-            self.atoms.info["mp-id"], "stalled", None, str(not minimization_stalled)
+            self.atoms.info["mp-id"], "stalled", None, str(minimization_stalled)
         )
         self.insert_mp_outputs(
             self.atoms.info["mp-id"], "success", None, str(self.success)
